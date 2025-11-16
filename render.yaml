@@ -1,10 +1,13 @@
 services:
   - type: web
-    name: ats-checker
+    name: ats-resume-ranker
     env: python
-    buildCommand: |
-      pip install -r requirements.txt
-      python -m spacy download en_core_web_sm
-    startCommand: uvicorn src.api.main:app --host 0.0.0.0 --port $PORT
     plan: free
-    autoDeploy: true
+    region: oregon
+
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn main:app -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT"
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10

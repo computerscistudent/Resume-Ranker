@@ -3,23 +3,24 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import pandas as pd, pdfplumber, docx, io, re, string, spacy, os
+import pandas as pd, pdfplumber, docx, io, re, string, os
+
 
 app = FastAPI(title="ATS Resume Ranking Portal")
 templates = Jinja2Templates(directory="src/api/templates")
-nlp = spacy.load("en_core_web_sm") 
+
 
 def clean_text(text):
     text = text.lower()
     text = re.sub(f"[{re.escape(string.punctuation)}]", " ", text)
     text = re.sub(r"\d+", " ", text)
-    doc = nlp(text)
-    return " ".join([token.lemma_ for token in doc if not token.is_stop and len(token) > 2])
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
 
 def extract_text(file: UploadFile):
     filename = file.filename.lower()
-    file.file.seek(0) 
-    content = file.file.read()  
+    file.file.seek(0)
+    content = file.file.read()
     if not content:
         return ""
     if filename.endswith(".pdf"):
@@ -33,15 +34,12 @@ def extract_text(file: UploadFile):
     else:
         raise ValueError("Unsupported file format")
 
-
 @app.get("/", response_class=HTMLResponse)
-def home(request : Request):
-    """Landing Page with 2 Modes"""
+def home(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
 @app.get("/start", response_class=HTMLResponse)
-def home(request : Request):
-    """Landing Page with 2 Modes"""
+def start(request: Request):
     return templates.TemplateResponse("start.html", {"request": request})
 
 @app.get("/recruiter", response_class=HTMLResponse)
@@ -49,12 +47,10 @@ def recruiter_page(request: Request):
     return templates.TemplateResponse("recruiter.html", {"request": request})
 
 @app.post("/rank_resumes", response_class=HTMLResponse)
-async def rank_resumes(request : Request, job_text : str = Form(...), files: list[UploadFile] = File(...)):
+async def rank_resumes(request: Request, job_text: str = Form(...), files: list[UploadFile] = File(...)):
     try:
-        
-        resumes= []
+        resumes = []
         for file in files:
-    
             raw_text = extract_text(file)
             text = clean_text(raw_text)
             if text.strip():
@@ -70,24 +66,19 @@ async def rank_resumes(request : Request, job_text : str = Form(...), files: lis
         job_clean = clean_text(job_text)
 
         vectorizer = TfidfVectorizer(max_features=3000)
-        # x = vectorizer.fit_transform([job_clean] + df["text"].to_list()).toarray()
-        # job_vec = x[0].reshape(1, -1)
-        # resume_vecs = x[1:]
-
         vectorizer.fit([job_clean])
 
         job_vec = vectorizer.transform([job_clean]).toarray()
         resume_vecs = vectorizer.transform(df["text"]).toarray()
 
-        sims = cosine_similarity(job_vec, resume_vecs)[0]*100  
+        sims = cosine_similarity(job_vec, resume_vecs)[0] * 100
         df["similarity"] = sims.round(2)
         df = df.sort_values(by="similarity", ascending=False)
 
         table_html = df[["filename", "similarity"]].to_html(classes="styled-table", index=False)
         return templates.TemplateResponse("result_rank.html", {"request": request, "table": table_html})
 
-        
-    except  Exception as e:
+    except Exception as e:
         return templates.TemplateResponse("result_rank.html", {"request": request, "error": str(e)})
 
 @app.get("/candidate", response_class=HTMLResponse)
@@ -95,15 +86,11 @@ def candidate_page(request: Request):
     return templates.TemplateResponse("candidate.html", {"request": request})
 
 @app.post("/upload_resume", response_class=HTMLResponse)
-async def upload_resume(request: Request, resume_file: UploadFile = File(...), job_text : str = Form(...)):
+async def upload_resume(request: Request, resume_file: UploadFile = File(...), job_text: str = Form(...)):
     try:
         resume_text = extract_text(resume_file)
         job_clean = clean_text(job_text)
         resume_clean = clean_text(resume_text)
-
-        # do this if u wanna fit and transform entire resume text alongside job description text
-        # vectorizer = TfidfVectorizer(max_features=3000)
-        # vectors = vectorizer.fit_transform(job_clean + resume_clean).toarray()
 
         vectorizer = TfidfVectorizer(max_features=3000)
         vectorizer.fit([job_clean])
@@ -111,7 +98,6 @@ async def upload_resume(request: Request, resume_file: UploadFile = File(...), j
         job_vec = vectorizer.transform([job_clean]).toarray()
         resume_vec = vectorizer.transform([resume_clean]).toarray()
 
-        # score = cosine_similarity([vectors[0]], [vectors[1]])[0][0] * 100
         score = cosine_similarity(job_vec, resume_vec)[0][0] * 100
         score = round(score, 2)
 
@@ -120,6 +106,5 @@ async def upload_resume(request: Request, resume_file: UploadFile = File(...), j
         return templates.TemplateResponse("result_score.html", {"request": request, "error": str(e)})
 
 @app.get("/docs_redirect", response_class=HTMLResponse)
-def home(request : Request):
-    """Landing Page with 2 Modes"""
+def docs_redirect(request: Request):
     return templates.TemplateResponse("docs_redirect.html", {"request": request})

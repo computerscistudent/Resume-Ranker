@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+textarea {
+    width: 90%;
+    max-width: 900px;
+}
+
+.anchor, button {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    background-color: rgba(255,255,255,0.5);
+    padding: 10px 20px;
+    border-radius: 8px;
+    width: 200px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.anchor a {
+    color:black !important;
+    text-decoration: none;
+}
+
+@media (max-width: 768px){
+    textarea { height:200px; }
+}
+</style>
+
+</head>
+
+<body style="text-align:center; background:#03744b; color:white;">
+
+<h1>👩‍💻 Candidate Mode</h1>
+<p>Upload your resume & see your score</p>
+
+<form action="/upload_resume" method="post" enctype="multipart/form-data">
+    <textarea name="job_text" rows="15" placeholder="Paste Job Description..." required></textarea><br><br>
+
+    <input type="file" name="resume_file" required><br><br>
+
+    <button type="submit"><b>🔍 Check Score</b></button>
+</form>
+
+<div class="anchor"><a href="/">⬅️ Back Home</a></div>
+
+</body>
+</html>

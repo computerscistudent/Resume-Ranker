@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATS Resume Ranking System</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        font-family: 'Segoe UI', sans-serif;
+        color: #f8fafc;
+        text-align: center;
+    }
+
+    .container {
+        max-width: 900px;
+        width: 90%;
+        margin: 40px auto;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.4);
+        backdrop-filter: blur(12px);
+    }
+
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.4rem; }
+    p, li { font-size: 1rem; text-align: left; }
+    ul { margin-left: 20px; }
+
+    .button {
+        margin-top: 30px;
+        padding: 15px 40px;
+        font-size: 18px;
+        border-radius: 8px;
+        background: linear-gradient(90deg, #1e90ff, #00bcd4);
+        color: white;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .button:hover{
+        background: linear-gradient(90deg, #0b3a6a, #037b8a);
+    }
+
+    @media (max-width: 768px) {
+        .container { padding: 20px; }
+        h1 { font-size: 1.6rem; }
+        h2 { font-size: 1.2rem; }
+        p, li { font-size: 0.9rem; }
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>💼 ATS Resume Ranking System</h1>
+    <p><i>Smart AI-powered platform that ranks resumes or evaluates your job fit instantly.</i></p>
+
+    <h2>🔍 Key Highlights</h2>
+    <p><b>Data Ingestion:</b> Automatically extracts and cleans text from PDF, DOCX, and TXT resumes.</p>
+    <p><b>Text Processing:</b> Uses <b>spaCy</b> for lemmatization and <b>TF-IDF</b> for text vectorization.</p>
+    <p><b>Similarity Engine:</b> Computes <b>Cosine Similarity</b> between resumes and job descriptions.</p>
+    <p><b>Dual Modes:</b></p>
+    <ul>
+        <li><b>Recruiter Mode:</b> Upload multiple resumes and rank them by job relevance.</li>
+        <li><b>Candidate Mode:</b> Upload your resume and instantly check your job match score.</li>
+    </ul>
+
+    <h2>🚀 Impact</h2>
+    <p>Bridges the gap between job seekers and recruiters using AI-driven matching.</p>
+    <p>Speeds up hiring, ensures fair candidate ranking, and demonstrates real-world NLP application power.</p>
+    <a href="/start" class="button">🚀 Get Started</a>
+</div>
+
+<footer style="margin-top:20px; color:#94a3b8;">Built with ❤️ using FastAPI</footer>
+
+</body>
+</html>

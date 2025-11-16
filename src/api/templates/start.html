@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATS Resume Portal</title>
+
+<style>
+body {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 15px;
+    color: white;
+    width: 80%;
+    max-width: 300px;
+}
+
+.recruiter { background-color: #1e90ff; }
+.candidate { background-color: #22c55e; }
+.docs { background-color: #d87c04; }
+
+.recruiter:hover { background-color: #1e3cff; }
+.candidate:hover { background-color: #07840f; }
+.docs:hover { background-color: #d84404; }
+
+@media (max-width:768px){
+    button{ font-size: 16px; padding: 12px 20px; }
+}
+</style>
+</head>
+
+<body>
+    <h1>💼 ATS Resume Ranking Portal</h1>
+    <p>Choose a mode:</p>
+
+    <a href="/recruiter"><button class="recruiter">🏢 Recruiter Mode</button></a>
+    <a href="/candidate"><button class="candidate">👩‍💻 Candidate Mode</button></a>
+    <a href="/docs_redirect"><button class="docs">🚀 Developer Mode</button></a>
+
+</body>
+</html>

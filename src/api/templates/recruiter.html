@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+textarea {
+    width: 90%;
+    max-width: 900px;
+}
+
+.anchor, button {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    background-color: rgba(255,255,255,0.5);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid black;
+    width: 200px;
+    cursor: pointer;
+}
+
+.anchor a {
+    color: black !important;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    textarea { height: 200px; }
+}
+</style>
+
+</head>
+
+<body style="text-align:center; background:#0f172a; color:white;">
+
+<h1>🏢 Recruiter Mode</h1>
+<p>Upload multiple resumes and rank them</p>
+
+<form action="rank_resumes" method="post" enctype="multipart/form-data">
+    <textarea name="job_text" rows="15" placeholder="Paste Job Description..." required></textarea><br><br>
+
+    <div><p style="color: yellow;"><b>Note -: please select all the files you need to rank at once and then proceed to checkout the rankings</b></p></div>
+
+    <input type="file" name="files" accept=".pdf,.docx,.txt" multiple required><br><br>
+
+    <button type="submit"><b>🚀 Rank Resumes</b></button>
+</form>
+
+<div class="anchor"><a href="/">⬅️ Back Home</a></div>
+
+</body>
+</html>

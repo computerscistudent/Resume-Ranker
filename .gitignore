@@ -1,0 +1,71 @@
+# ==========================================
+# 🚀 Resume Ranker (FastAPI + NLP + ML)
+# ==========================================
+
+# --- Python cache ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+ENV/
+.conda/
+*.env
+*.venv
+
+# --- OS & editor files ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# --- Logs & temporary files ---
+logs/
+*.log
+*.tmp
+*.bak
+*.swp
+
+# --- Data files ---
+data/raw/
+data/processed/
+!data/raw/.keep
+!data/processed/.keep
+
+# --- Notebooks checkpoints ---
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# --- Artifacts (keep trained models) ---
+artifacts/
+!artifacts/*.joblib
+!artifacts/*.pkl
+!artifacts/*.bin
+
+# --- Build / Distribution ---
+build/
+dist/
+*.egg-info/
+*.tar.gz
+*.zip
+MANIFEST
+
+# --- Test & coverage ---
+htmlcov/
+.tox/
+.nox/
+.coverage
+*.cover
+coverage.xml
+*.pytest_cache/
+
+# --- FastAPI static / cache ---
+__pycache__/
+staticfiles/
+cache/
+

@@ -1,14 +1,9 @@
 services:
   - type: web
-    name: ats-resume-ranker
+    name: resume-ranker
     env: python
-    plan: free
-    region: oregon
-
     buildCommand: "pip install -r requirements.txt"
     startCommand: "gunicorn main:app -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT"
-
     envVars:
       - key: PYTHON_VERSION
-        value: 3.10
-
+        value: 3.10.13

@@ -18,7 +18,7 @@ print("🚀 Loading lightweight semantic model...")
 # ⚡ SMALL, SUPER-FAST MODEL (~30MB)
 # This fits easily in Render Free Tier RAM
 model = SentenceTransformer(
-    "sentence-transformers/paraphrase-MiniLM-L3-v2",
+    "sentence-transformers/all-MiniLM-L6-v2",
     cache_folder="/tmp/cache"
 )
 

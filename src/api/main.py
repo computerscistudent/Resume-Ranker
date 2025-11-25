@@ -31,9 +31,18 @@ def cosine_similarity_score(emb_a, emb_b):
     a = np.array(emb_a)
     b = np.array(emb_b)
     
-    score = np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+    raw_score = np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
     
-    return round(((score + 1) / 2) * 100, 2)
+    min_thresh = 0.60
+    max_thresh = 0.85
+
+    if raw_score < min_thresh:
+        return 0.00
+    elif raw_score > max_thresh:
+        return 99.99
+    else:
+        normalized = (raw_score-min_thresh)/(max_thresh-min_thresh)
+        return round(normalized*100,2)
 
 def clean_text(text):
     text = text.lower()

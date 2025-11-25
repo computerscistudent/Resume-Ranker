@@ -58,23 +58,25 @@
 
 <div class="container">
     <h1>💼 ATS Resume Ranking System</h1>
-    <p><i>Smart AI-powered platform that ranks resumes or evaluates your job fit instantly.</i></p>
+    <p><i>Smart AI-powered platform that ranks resumes or evaluates your job fit using OpenAI Embeddings.</i></p>
 
     <h2>🔍 Key Highlights</h2>
     <p><b>Data Ingestion:</b> Automatically extracts and cleans text from PDF, DOCX, and TXT resumes.</p>
-    <p><b>Text Processing:</b> Uses <b>spaCy</b> for lemmatization and <b>TF-IDF</b> for text vectorization.</p>
-    <p><b>Similarity Engine:</b> Computes <b>Cosine Similarity</b> between resumes and job descriptions.</p>
+    <p><b>Semantic Processing:</b> Uses <b>OpenAI text-embedding-3-small</b> model to convert resumes and job descriptions into high-quality vector embeddings.</p>
+    <p><b>Similarity Engine:</b> Computes <b>Cosine Similarity</b> on embeddings + calibrated scoring for realistic match percentages.</p>
     <p><b>Dual Modes:</b></p>
     <ul>
-        <li><b>Recruiter Mode:</b> Upload multiple resumes and rank them by job relevance.</li>
+        <li><b>Recruiter Mode:</b> Upload multiple resumes and rank them by semantic relevance to the job description.</li>
         <li><b>Candidate Mode:</b> Upload your resume and instantly check your job match score.</li>
     </ul>
 
     <h2>🚀 Impact</h2>
-    <p>Bridges the gap between job seekers and recruiters using AI-driven matching.</p>
-    <p>Speeds up hiring, ensures fair candidate ranking, and demonstrates real-world NLP application power.</p>
+    <p>Uses advanced OpenAI embeddings to understand meaning, context, and real semantic similarity—far beyond keyword matching.</p>
+    <p>Helps recruiters identify the best candidates faster and assists job seekers in understanding how well they fit a role.</p>
+
     <a href="/start" class="button">🚀 Get Started</a>
 </div>
+
 
 <footer style="margin-top:20px; color:#94a3b8;">Built with ❤️ using FastAPI</footer>
 

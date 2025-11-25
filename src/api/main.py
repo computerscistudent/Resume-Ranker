@@ -33,8 +33,8 @@ def cosine_similarity_score(emb_a, emb_b):
     
     raw_score = np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
     
-    min_thresh = 0.60
-    max_thresh = 0.85
+    min_thresh = 0.25
+    max_thresh = 0.65
 
     if raw_score < min_thresh:
         return 0.00
